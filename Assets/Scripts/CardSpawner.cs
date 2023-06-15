@@ -54,6 +54,13 @@ public class CardSpawner : MonoBehaviour
         symbolManager.DisplaySymbols(symbols);
     }
 
+    private void Setup()
+    {
+        matchValues = new List<int>();
+        SpawnCards();
+        gridManager.Clear();
+    }
+
     private string GetText(int matchVal)
     {
         switch (matchVal)

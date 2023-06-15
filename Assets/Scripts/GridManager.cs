@@ -43,6 +43,11 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void Clear()
+    {
+        cardsToPair.Clear();
+    }
+
     // Set card as revealed
     public void RevealCard(Card cardToReveal)
     {
