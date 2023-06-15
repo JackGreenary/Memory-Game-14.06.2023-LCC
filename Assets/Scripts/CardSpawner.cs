@@ -10,9 +10,12 @@ public class CardSpawner : MonoBehaviour
     [SerializeField]
     private GameObject cardPrefab;
     [SerializeField]
+    private bool spawnCards;
+
+    [SerializeField]
     private GridManager gridManager;
     [SerializeField]
-    private bool spawnCards;
+    private SymbolManager symbolManager;
 
     void Start()
     {
@@ -27,6 +30,7 @@ public class CardSpawner : MonoBehaviour
     {
         int i = 0;
         List<Card> cards = new List<Card>();
+        List<string> symbols = new List<string>();
 
         // Set match values
         matchValues = new List<int>{ 0, 1, 2, 3, 4, 5 };
@@ -38,12 +42,16 @@ public class CardSpawner : MonoBehaviour
 
         foreach (int matchVal in matchValues)
         {
+            string symbol = GetText(matchVal);
+            symbols.Add(symbol);
+
             Card card = Instantiate(cardPrefab, gridManager.transform).GetComponent<Card>();
-            card.Init(i, GetText(matchVal), matchVal, gridManager);
+            card.Init(i, symbol, symbol, gridManager);
             cards.Add(card);
             i++;
         }
         gridManager.AddCards(cards);
+        symbolManager.DisplaySymbols(symbols);
     }
 
     private string GetText(int matchVal)

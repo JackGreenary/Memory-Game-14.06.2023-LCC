@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public int id;
-    public int matchValue;
+    public string matchValue;
     public GridManager gridManager;
 
     [SerializeField]
@@ -45,7 +45,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     [SerializeField]
     private bool paired;
 
-    public void Init(int Id, string Text, int MatchValue, GridManager GridManager)
+    public void Init(int Id, string Text, string MatchValue, GridManager GridManager)
     {
         id = Id;
         text.text = Text;
@@ -117,12 +117,12 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
         if (!revealing && !paired)
             background.color = Color.red;
-            //background.color = new Color32(255, 174, 174, 255);
+        //background.color = new Color32(255, 174, 174, 255);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         //if (!revealing && !paired)
-            background.color = Color.white;
+            background.color = Color.black;
     }
 
     public void RevealCard(bool isRevealing)
@@ -153,7 +153,7 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
     {
         highlight.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
-        background.color = Color.white;
+        background.color = Color.black;
         revealed = false;
     }
 
@@ -163,9 +163,9 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         hideTimer = setTimerTo;
 
         highlight.color = Color.red;
-        var tempColor = highlight.color;
-        tempColor.a = .3f;
-        highlight.color = tempColor;
+        //var tempColor = highlight.color;
+        //tempColor.a = .3f;
+        //highlight.color = tempColor;
 
         highlight.gameObject.SetActive(true);
     }
@@ -176,9 +176,9 @@ public class Card : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, I
         pairTimer = setTimerTo;
 
         highlight.color = Color.green;
-        var tempColor = highlight.color;
-        tempColor.a = .3f;
-        highlight.color = tempColor;
+        //var tempColor = highlight.color;
+        //tempColor.a = .3f;
+        //highlight.color = tempColor;
 
         highlight.gameObject.SetActive(true);
     }

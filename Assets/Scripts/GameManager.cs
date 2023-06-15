@@ -20,12 +20,16 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameOverPnl;
 
+    [SerializeField]
+    private AudioController audioController;
+
 
     // Start is called before the first frame update
     void Start()
     {
         started = true;
         gameOverPnl.SetActive(false);
+        audioController.Play("Music");
     }
 
     // Update is called once per frame
@@ -52,5 +56,14 @@ public class GameManager : MonoBehaviour
 
         gameOverTxt.text = (isWin ? "YOU WIN" : "YOU LOSE");
         gameOverPnl.SetActive(true);
+
+        if (isWin)
+        {
+            audioController.Play("Cheer");
+        }
+        else
+        {
+            audioController.Play("GameOver");
+        }
     }
 }

@@ -20,6 +20,8 @@ public class GridManager : MonoBehaviour
     private GameManager gameManager;
     [SerializeField]
     private AudioController audioController;
+    [SerializeField]
+    private SymbolManager symbolManager;
 
     private bool canClick;
     private float internalTimer;
@@ -81,13 +83,16 @@ public class GridManager : MonoBehaviour
             // Update cardsToPair
             cardsToPair.Remove(newCard);
             cardsToPair.Remove(revealedCard);
+            audioController.Play("Click");
+
+            // Update symbol
+            symbolManager.UpdateSymbol(newCard.matchValue);
 
             // Are all cards matched?
             if (cardsToPair.Count == 0)
             {
                 // Win
                 gameManager.GameOver(true);
-                audioController.Play("Click");
             }
         }
         else
